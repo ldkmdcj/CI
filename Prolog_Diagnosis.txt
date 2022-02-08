@@ -40,13 +40,13 @@ cold :-
 	write('Nasal spray'),
 	nl,
 	write('Warm herbal tea'),
-	nl.    
+	nl,   
 	write('Rest'),
 	nl,
 	write('Stay hydrated'),
 	nl,
 	write('Over-the-counter cold and cought medications'),
-	nl,
+	nl.
 covid :-
 	verify(fever),
 	verify(dry_cough),
@@ -54,13 +54,13 @@ covid :-
 	write('Advices and Sugestions: '),
 	nl,
 	write('Quarantine for two weeks'),
-	nl.	
+	nl,	
 	write('Prevent dehydrations'),
-	nl.	
+	nl,	
 	write('Monitor your Symptoms'),
-	nl.
+	nl,
 	write('Treat weak symptoms with over-the-counter cold and cought medications'),
-	nl.	
+	nl,	
 	write('If the symptoms get worse, call your doctor right away'),
 	nl.	
 ask(Question) :-
