@@ -22,9 +22,13 @@ malaria :-
 	verify(diarrhea),
 	write('Advices and Sugestions:'),
 	nl,
-	write('Medicin'),
+	write('Take one of the following medicines: '),
 	nl,
-	write('Please do not sleep in open air and cover you full skin.'),
+	write('Chloroquin, Mefloquin or Atovaquon'),
+	nl,
+	write('Stay hydrated'),
+	nl,
+	write('Please do not sleep in open air and cover your full skin.'),
 	nl.
 cold :-
 	verify(headache),
@@ -35,8 +39,14 @@ cold :-
 	nl,
 	write('Nasal spray'),
 	nl,
-	write('Warm tea'),
+	write('Warm herbal tea'),
 	nl.    
+	write('Rest'),
+	nl,
+	write('Stay hydrated'),
+	nl,
+	write('Over-the-counter cold and cought medications'),
+	nl,
 covid :-
 	verify(fever),
 	verify(dry_cough),
@@ -45,8 +55,16 @@ covid :-
 	nl,
 	write('Quarantine for two weeks'),
 	nl.	
+	write('Prevent dehydrations'),
+	nl.	
+	write('Monitor your Symptoms'),
+	nl.
+	write('Treat weak symptoms with over-the-counter cold and cought medications'),
+	nl.	
+	write('If the symptoms get worse, call your doctor right away'),
+	nl.	
 ask(Question) :-
-	write('Does the patient have following symptom:'),
+	write('Does the patient have the following symptom:'),
 	write(Question),
 	write('?'),
 	read(Response),
