@@ -1,72 +1,63 @@
-PROLOG
+% Medical Diagnosis Expert System in PROLOG
+% To run, type go.
 
-go:- hypothesis(Disease),
-write('El paciente tiene: '),
+go:- hypothesize(Disease),
+write('I think the patient has: '),
 write(Disease),
 nl,
 undo.
 
-hypothesis(covid):- covid, !.
-hypothesis(cold):- cold, !.
-hypothesis(malaria):- malaria, !.
-hypothesis(unknown).
-
+/* Hypothesis to be tested */
+hypothesize(covid):- covid, !.
+hypothesize(cold):- cold, !.
+hypothesize(malaria):- malaria, !.
+hypothesize(unknown).
+/* Disease identification rules */
 malaria :-
-verify(fever),
-verify(sweating),
-verify(headache),
-verify(nausea),
-verify(vomiting),
-verify(diarrhea),
-write('Avices and Sugestions:'),
-nl,
-write('Medicin'),
-nl,
-write('Please do not sleep in open air and cover you full skin.'),
-nl.
-
+	verify(fever),
+	verify(sweating),
+	verify(headache),
+	verify(nausea),
+	verify(vomiting),
+	verify(diarrhea),
+	write('Advices and Sugestions:'),
+	nl,
+	write('Medicin'),
+	nl,
+	write('Please do not sleep in open air and cover you full skin.'),
+	nl.
 cold :-
-verify(headache),
-verify(runny_nose),
-verify(sneezing), 
-verify(sore_throat),
-write('Advices and Sugestions: '),
-nl,
-write('Nasal spray'),
-nl,
-write('Warm tea'),
-nl.    
-    
+	verify(headache),
+	verify(runny_nose),
+	verify(sneezing), 
+	verify(sore_throat),
+	write('Advices and Sugestions: '),
+	nl,
+	write('Nasal spray'),
+	nl,
+	write('Warm tea'),
+	nl.    
 covid :-
-verify(fever),
-verify(dry_cough),
-verify(shortness_of_breath),
-write('Advices and Sugestions: '),
-nl,
-write('Quarantine for two weeks'),
-nl.
-    	
+	verify(fever),
+	verify(dry_cough),
+	verify(shortness_of_breath),
+	write('Advices and Sugestions: '),
+	nl,
+	write('Quarantine for two weeks'),
+	nl.	
 ask(Question) :-
-write('Does the patient have following symptom:'),
-write(Question),
-write('?'),
-read(Response),
-nl,
-(   (   Response == yes ; Response == y)
-->   
-assert(yes(Question));
-assert(no(Question)), fail).
-	
+	write('Does the patient have following symptom:'),
+	write(Question),
+	write('?'),
+	read(Response),
+	nl,
+	(   (   Response == yes ; Response == y)
+	-> assert(yes(Question));
+	assert(no(Question)), fail).	
 :- dynamic yes/1, no/1.
-verify(S) :-
- (yes(S)
-  ->  
-   true;
-    (no(S)
-     ->  
-      fail;
-       ask(S))).
-
+/* How to verify something */
+verify(S) :- (yes(S) -> true ; (no(S) -> fail; ask(S))). 
+/* Undo all yes/no assertations */
 undo :- retract(yes(_)),fail.
 undo :- retract(no(_)),fail.
 undo. 
